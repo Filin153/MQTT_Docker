@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  mosquitto:
+    image: eclipse-mosquitto:latest
+    container_name: mosquitto_broker
+    restart: unless-stopped
+    ports:
+      - "9834:1883"  # MQTT
+      - "9801:9001"  # WebSockets (если нужен)
+    volumes:
+      - ./mosquitto/config:/mosquitto/config
+      - ./mosquitto/data:/mosquitto/data
+      - ./mosquitto/log:/mosquitto/log
